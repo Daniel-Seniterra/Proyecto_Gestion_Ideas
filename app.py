@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,7 +15,7 @@ from forms.proveedor_form import ProveedorForm
 from forms.facturacion_form import FacturacionForm
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "cambia-esta-clave-en-produccion"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-clave-local")
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
