@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Dashboard</h1>
+        <p class="text-muted mb-0">Bienvenido, {{ current_user.nombre }}.</p>
+    </div>
+    <a href="{{ url_for('nuevo_producto') }}" class="btn btn-primary">+ Nueva idea</a>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Ideas</span>
+            <strong>{{ total_ideas }}</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Clientes</span>
+            <strong>{{ total_clientes }}</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Proveedores</span>
+            <strong>{{ total_proveedores }}</strong>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <span>Facturas</span>
+            <strong>{{ total_facturas }}</strong>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4>Ideas recientes</h4>
+        {% if ideas_recientes %}
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Idea</th>
+                            <th>Categoría</th>
+                            <th>Estado</th>
+                            <th>Creador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for idea in ideas_recientes %}
+                        <tr>
+                            <td>{{ idea.nombre }}</td>
+                            <td>{{ idea.categoria }}</td>
+                            <td><span class="badge bg-secondary">{{ idea.estado }}</span></td>
+                            <td>{{ idea.creador or "Usuario" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="text-muted mb-0">Todavía no existen ideas registradas.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Ideas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Gestión de Ideas</h1>
+        <p class="text-muted">Módulo de registro y administración de ideas.</p>
+    </div>
+    <a href="{{ url_for('nuevo_producto') }}" class="btn btn-primary">+ Nueva idea</a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        {% if productos %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Estado</th>
+                        <th>Creador</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for producto in productos %}
+                    <tr>
+                        <td>
+                            <strong>{{ producto.nombre }}</strong>
+                            <br>
+                            <small class="text-muted">{{ producto.descripcion[:80] }}{% if producto.descripcion|length > 80 %}...{% endif %}</small>
+                        </td>
+                        <td>{{ producto.categoria }}</td>
+                        <td><span class="badge bg-secondary">{{ producto.estado }}</span></td>
+                        <td>{{ producto.creador or "Usuario" }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_producto', producto_id=producto.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                            <form method="POST" action="{{ url_for('eliminar_producto', producto_id=producto.id) }}" class="d-inline form-eliminar">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <p class="text-muted">No existen ideas registradas.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

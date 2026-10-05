@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Proveedores</h1>
+        <p class="text-muted">Proveedores de servicios y recursos para los proyectos.</p>
+    </div>
+    <a href="{{ url_for('nuevo_proveedor') }}" class="btn btn-primary">+ Nuevo proveedor</a>
+</div>
+
+{% if mostrar_form %}
+<div class="card mb-4">
+    <div class="card-body">
+        <h4>Registrar proveedor</h4>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="row">
+                <div class="col-md-6 mb-3">{{ form.nombre.label(class="form-label") }}{{ form.nombre(class="form-control") }}</div>
+                <div class="col-md-6 mb-3">{{ form.servicio.label(class="form-label") }}{{ form.servicio(class="form-control") }}</div>
+                <div class="col-md-6 mb-3">{{ form.email.label(class="form-label") }}{{ form.email(class="form-control") }}</div>
+                <div class="col-md-6 mb-3">{{ form.telefono.label(class="form-label") }}{{ form.telefono(class="form-control") }}</div>
+            </div>
+            {{ form.submit(class="btn btn-success") }}
+        </form>
+    </div>
+</div>
+{% endif %}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead><tr><th>Nombre</th><th>Servicio</th><th>Email</th><th>Teléfono</th></tr></thead>
+                <tbody>
+                {% for proveedor in proveedores %}
+                    <tr>
+                        <td>{{ proveedor.nombre }}</td>
+                        <td>{{ proveedor.servicio }}</td>
+                        <td>{{ proveedor.email }}</td>
+                        <td>{{ proveedor.telefono }}</td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="4" class="text-center text-muted">No hay proveedores registrados.</td></tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

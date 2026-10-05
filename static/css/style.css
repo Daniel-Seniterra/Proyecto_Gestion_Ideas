@@ -1,0 +1,50 @@
+body {
+    background-color: #f5f7fb;
+    color: #212529;
+    min-height: 100vh;
+}
+
+.hero {
+    background: linear-gradient(135deg, #e8f1ff, #ffffff);
+    border: 1px solid #dce7f7;
+}
+
+.idea-icon {
+    font-size: 8rem;
+}
+
+.card {
+    border: none;
+    border-radius: 14px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.06);
+}
+
+.stat-card span {
+    display: block;
+    color: #6c757d;
+    margin-bottom: .4rem;
+}
+
+.stat-card strong {
+    font-size: 2rem;
+    color: #0d6efd;
+}
+
+.footer {
+    background: #172033;
+    color: #ffffff;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.btn {
+    border-radius: 8px;
+}

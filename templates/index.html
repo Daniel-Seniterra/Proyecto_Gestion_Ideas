@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio | Gestión de Ideas{% endblock %}
+
+{% block content %}
+<section class="hero p-5 rounded-4 shadow-sm">
+    <div class="row align-items-center">
+        <div class="col-lg-7">
+            <span class="badge text-bg-primary mb-3">Plataforma empresarial</span>
+            <h1 class="display-5 fw-bold">Gestión de Ideas</h1>
+            <p class="lead">
+                Plataforma para registrar, organizar, analizar y administrar
+                ideas innovadoras de manera sencilla.
+            </p>
+
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">
+                    Ir al dashboard
+                </a>
+            {% else %}
+                <a href="{{ url_for('registro') }}" class="btn btn-primary btn-lg me-2">
+                    Crear cuenta
+                </a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">
+                    Iniciar sesión
+                </a>
+            {% endif %}
+        </div>
+        <div class="col-lg-5 text-center mt-4 mt-lg-0">
+            <div class="idea-icon">💡</div>
+        </div>
+    </div>
+</section>
+
+<section class="row mt-5 g-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3>Registrar</h3>
+                <p>Captura nuevas ideas con información organizada y validada.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3>Analizar</h3>
+                <p>Clasifica las ideas y controla su estado durante el proceso.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h3>Gestionar</h3>
+                <p>Administra clientes, proveedores y procesos de facturación.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
